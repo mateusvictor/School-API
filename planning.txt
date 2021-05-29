@@ -1,0 +1,88 @@
+* endpoints
+
+api/
+	teachers/ 
+		GET
+		[
+			{
+				"first_name": "Carlos",
+				"last_name": "Guadalupe",
+				"date_of_birth": "11-12-2021",
+				"salary": 4000.21,
+				"phone_number": "55 11 912345431",
+				"address": {
+					"country": "Brazil",
+					"state": "Sao Paulo",
+					"city": "Sao Paulo",
+					"street": "Avenida Brazil, 10",
+					"complemento": "Apto 8"
+				},
+				"courses": [
+					{
+						"id": 19,
+						"name": "Algorithms",
+						"students_count": 10,
+						"students": [
+							{
+								"first_name": "Mateus",
+								"last_name": "Silva",
+								"courses_enrolled": 21,
+								"date_of_birth": "31-11-2021"
+								"phone_number":
+							}
+						]
+					}
+				]
+			}
+		]
+		POST
+		[
+			{
+				"first_name": "Carlos",
+				"last_name": "Guadalupe",
+				"date_of_birth": "11-12-2021",
+				"salary": 4000.21,
+				"email": "55 11 912345431",
+				"address": {
+					"country": "Brazil",
+					"state": "Sao Paulo",
+					"city": "Sao Paulo",
+					"street": "Avenida Brazil, 10",
+					"complemento": "Apto 8"
+				}
+			}
+		]
+
+	students/
+		[
+			{
+				"first_name": "Mateus",
+				"last_name": "Silva",
+				"date_of_birth": "21-11-2021",
+				"salary": 8000.11,
+				"phone_number": "+55 11 912345431",
+				"address": {
+					"country": "Brazil",
+					"state": "Sao Paulo",
+					"city": "Sao Paulo",
+					"street": "Avenida Brazil, 10",
+					"complemento": "Apto 8"
+				},
+				"courses": [
+					{
+						"id": 19,
+						"name": "Algorithms",
+						"students_count": 10,
+						"students": [
+							{
+								"first_name": "Mateus",
+								"last_name": "Silva",
+								"courses_enrolled": 21,
+								"date_of_birth": "31-11-2021"
+							}
+						]
+					}
+				]
+			}
+		]
+	courses/

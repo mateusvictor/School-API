@@ -13,6 +13,15 @@ class CourseList(APIView):
 		serializer = CourseSerializer(courses, many=True, context={'request': request})
 		return Response(serializer.data)
 
+	def post(self, request):
+		serializer = CourseSerializer(data=request.data, context={'request': request})
+
+		if serializer.is_valid():
+			serializer.save()
+			return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class CourseDetail(APIView):
 	def get_object(self, pk):

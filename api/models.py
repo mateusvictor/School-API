@@ -8,7 +8,7 @@ class Person(models.Model):
 	first_name = models.CharField(max_length=200)
 	last_name = models.CharField(max_length=200)
 	date_of_birth = models.DateField()
-	email = models.EmailField()
+	email = models.EmailField(unique=True)
 
 
 class Address(models.Model):

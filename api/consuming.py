@@ -27,27 +27,23 @@ def print_json(mydict):
 	}
 """
 def send_post():
-	# data = {
-	# 	"person": {
-	# 		"first_name": "Maria",
-	# 		"last_name": "Dores",
-	# 		"date_of_birth": "2000-11-29",
-	# 		"email": "maria@hotmail.com",
-	# 		"address": {
-	# 			"country": "Argentina",
-	# 			"state": "Garrafa",
-	# 			"city": "Buenos Aires",
-	# 			"street": "Rua del Garrafon, 123",
-	# 			"postal_code": "912-1231-312",
-	# 			"complement": "Apto Feliz"
-	# 		}
-	# 	}
-	# }
 	data = {
-
-		'professor': 4
+		"person": {
+			"first_name": "Jorge Vieira",
+			"last_name": "Silva Amoedo",
+			"date_of_birth": "2000-07-05",
+			"email": "jorge@gmail.com",
+			"address": {
+				"country": "Brazil",
+				"state": "Sao Paulo",
+				"city": "Sao Paulo",
+				"street": "Rua do Paulo, 21",
+				"postal_code": "03123-901",
+			}
+		}
 	}
-	r = requests.put('http://localhost:8000/api/professors/4/', json=data)
+
+	r = requests.post('http://localhost:8000/api/students/', json=data)
 	print_json(r.text)
 	print(r.status_code)
 
@@ -70,5 +66,5 @@ def send_get():
 	new_dict = json.loads(a)
 	print_json(a)
 	return new_dict
-print('vaimlk')
-send_put()	
+
+send_post()	

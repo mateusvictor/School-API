@@ -35,6 +35,9 @@ class Professor(models.Model):
 	def courses_count(self):
 		return self.courses_taught.all().count()
 
+	def __str__(self):
+		return f'{self.person.first_name} {self.person.last_name}'
+
 
 class Student(models.Model):
 	"""Model representing a Student"""
@@ -43,6 +46,8 @@ class Student(models.Model):
 	def courses_count(self):
 		return self.courses_enrolled.all().count() # Reverse relation from Student to Enroll
 
+	def __str__(self):
+		return f'{self.person.first_name} {self.person.last_name}'
 
 class Course(models.Model):
 	"""Model representing a Course"""
@@ -54,6 +59,8 @@ class Course(models.Model):
 		"""Returns the count of the students that enrolled the course"""
 		return self.course_instances.all().count() # Reverse relation from Course to Enroll
 
+	def __str__(self):
+		return f'{self.name}'
 
 class Enroll(models.Model):
 	"""Model representing a Course Instance (created when a user register in a new course)"""

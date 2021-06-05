@@ -88,3 +88,9 @@ class CourseSerializer(serializers.ModelSerializer):
 		model = Course
 		fields = ['id', 'name', 'description', 'professor', 'professor_link']
 
+
+class EnrollSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Enroll
+		fields = ['student', 'course']
+	

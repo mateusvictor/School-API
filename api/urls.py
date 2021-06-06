@@ -14,4 +14,6 @@ urlpatterns = [
 	# Course urls
 	path('courses/', course_view.CourseList.as_view(), name='course-list'),
 	path('courses/<int:pk>/', course_view.CourseDetail.as_view(), name='course-detail'),
+	path('courses/enroll/', course_view.EnrollView.as_view(), name='enroll'),
+	path('courses/unenroll/', course_view.UnenrollView.as_view(), name='unenroll'),
 ]

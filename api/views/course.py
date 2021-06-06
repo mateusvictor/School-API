@@ -6,8 +6,10 @@ from rest_framework.response import Response
 from api.serializers import *
 from api.models import *
 
+
 def already_enrolled(student, course):
 	return Enroll.objects.all().filter(student=student, course=course).exists()
+
 
 class CourseList(APIView):
 	def get(self, request):
@@ -64,7 +66,7 @@ class EnrollView(APIView):
 
 		if serializer.is_valid():
 			student, course = serializer.validated_data.values()
-			print(student, course)
+
 			if already_enrolled(student, course):
 				error = {
 					'error': f'Student {student} already enrolled {course}'
@@ -78,3 +80,17 @@ class EnrollView(APIView):
 				return Response(data, status=status.HTTP_201_CREATED)
 
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UnenrollView(APIView):
+	def post(self, request):
+		student_id, course_id = int(request.POST['student']), int(request.POST['course'])
+		try:
+			enroll_object = Enroll.objects.get(student__id=student_id, course__id=course_id)
+			enroll_object.delete()
+		except Enroll.DoesNotExist:
+			raise Http404
+		else:
+			student = Student.objects.get(pk=student_id)
+			course = Course.objects.get(pk=course_id)
+			return Response({'detail': f'Student {student} successfully unenrolled {course}'})

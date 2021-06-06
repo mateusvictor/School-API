@@ -45,6 +45,7 @@ class StudentDetail(APIView):
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 	def delete(self, request, pk):
-		student = self.get_object(pk)		
+		student = self.get_object(pk)
+		student.person.delete()
 		student.delete()
 		return Response("[]", status=status.HTTP_200_OK)

@@ -45,6 +45,7 @@ class ProfessorDetail(APIView):
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 	def delete(self, request, pk):
-		professor = self.get_object(pk)		
+		professor = self.get_object(pk)
+		professor.person.delete()
 		professor.delete()
 		return Response("[]", status=status.HTTP_200_OK)

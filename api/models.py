@@ -49,6 +49,7 @@ class Student(models.Model):
 	def __str__(self):
 		return f'{self.person.first_name} {self.person.last_name}'
 
+
 class Course(models.Model):
 	"""Model representing a Course"""
 	name = 	models.CharField(max_length=100)
@@ -61,6 +62,7 @@ class Course(models.Model):
 
 	def __str__(self):
 		return f'{self.name}'
+
 
 class Enroll(models.Model):
 	"""Model representing a Course Instance (created when a user register in a new course)"""

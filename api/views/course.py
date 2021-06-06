@@ -65,7 +65,13 @@ class EnrollView(APIView):
 		serializer = EnrollSerializer(data=request.data)
 
 		if serializer.is_valid():
-			student, course = serializer.validated_data.values()
+			"""
+		 	`_, _ = serializer.validated_data['...'], serializer.validated_data['...']` is a better aproach
+			than `serializer.validated_data.values()` because it avoid errors if the order of the fields on 
+			EnrollSerializer is changed
+			"""
+			student, course = serializer.validated_data['student'], serializer.validated_data['course']
+
 
 			if already_enrolled(student, course):
 				error = {

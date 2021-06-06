@@ -43,28 +43,32 @@ def send_post():
 		}
 	}
 
-	r = requests.post('http://localhost:8000/api/students/', json=data)
+	data = {
+		"course": 2,
+		"student": 3,
+	}
+	r = requests.post('http://localhost:8000/api/enroll/', data)
 	print_json(r.text)
 	print(r.status_code)
 
 
-def send_put():
-	data = send_get()
-	data['salary'] = "9123.12"
-	data['person']['email'] = "cuzcuz@gmail.com"
-	data['person']['address']['state'] = 'São Paulo' 
-	data['person']['address']['complement'] = 'Casa Verde' 
+# def send_put():
+# 	data = send_get()
+# 	data['salary'] = "9123.12"
+# 	data['person']['email'] = "cuzcuz@gmail.com"
+# 	data['person']['address']['state'] = 'São Paulo' 
+# 	data['person']['address']['complement'] = 'Casa Verde' 
 	
-	r = requests.put('http://localhost:8000/api/professors/4/', json=data)
-	print_json(r.text)
-	print(r.status_code)
+# 	r = requests.put('http://localhost:8000/api/professors/4/', json=data)
+# 	print_json(r.text)
+# 	print(r.status_code)
 
 
-def send_get():
-	r = requests.get('http://localhost:8000/api/professors/4/')
-	a = r.text
-	new_dict = json.loads(a)
-	print_json(a)
-	return new_dict
+# def send_get():
+# 	r = requests.get('http://localhost:8000/api/professors/4/')
+# 	a = r.text
+# 	new_dict = json.loads(a)
+# 	print_json(a)
+# 	return new_dict
 
 send_post()	

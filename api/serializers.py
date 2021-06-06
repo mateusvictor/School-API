@@ -31,12 +31,21 @@ class PersonSerializer(serializers.ModelSerializer):
 		return person
 
 
+class EnrollSerializer(serializers.ModelSerializer):
+	enrolled_at = serializers.DateTimeField(format="%d-%m-%Y %H:%M:%S")
+
+	class Meta:
+		model = Enroll
+		fields = ['course', 'student', 'enrolled_at']
+
+
 class StudentSerializer(serializers.ModelSerializer):
 	person = PersonSerializer()
+	courses_enrolled = EnrollSerializer(many=True, read_only=True)
 
 	class Meta:
 		model = Student
-		fields = ['id', 'person']
+		fields = ['id', 'person', 'courses_enrolled']
 
 	def create(self, validated_data):
 		person_data = validated_data.pop('person')
@@ -63,12 +72,21 @@ class StudentSerializer(serializers.ModelSerializer):
 		return instance
 
 
+class CourseSerializer(serializers.ModelSerializer):	
+	course_instances = EnrollSerializer(many=True, read_only=True)
+
+	class Meta:
+		model = Course
+		fields = ['id', 'name', 'description', 'professor', 'course_instances']
+
+
 class ProfessorSerializer(StudentSerializer):
 	"""PersonSerializer: inherits the `.update()` method and the `person` variable from StudentSerializer"""
+	courses_taught = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
 	class Meta:
 		model = Professor
-		fields = ['id', 'person', 'salary', 'entry_year']
+		fields = ['id', 'person', 'salary', 'entry_year', 'courses_taught']
 
 	def create(self, validated_data):	
 		person_data = validated_data.pop('person')
@@ -79,18 +97,3 @@ class ProfessorSerializer(StudentSerializer):
 
 		professor = Professor.objects.create(person=person_inst, **validated_data)
 		return professor
-
-
-class CourseSerializer(serializers.ModelSerializer):
-	professor_link = serializers.HyperlinkedRelatedField(read_only=True, view_name='professor-detail')
-	
-	class Meta:
-		model = Course
-		fields = ['id', 'name', 'description', 'professor', 'professor_link']
-
-
-class EnrollSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = Enroll
-		fields = ['student', 'course']
-	

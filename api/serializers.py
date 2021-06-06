@@ -32,7 +32,7 @@ class PersonSerializer(serializers.ModelSerializer):
 
 
 class EnrollSerializer(serializers.ModelSerializer):
-	enrolled_at = serializers.DateTimeField(format="%d-%m-%Y %H:%M:%S")
+	enrolled_at = serializers.DateTimeField(format="%d-%m-%Y %H:%M:%S", read_only=True)
 
 	class Meta:
 		model = Enroll

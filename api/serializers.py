@@ -74,10 +74,14 @@ class StudentSerializer(serializers.ModelSerializer):
 
 class CourseSerializer(serializers.ModelSerializer):	
 	course_instances = EnrollSerializer(many=True, read_only=True)
+	students_count = serializers.SerializerMethodField()
 
 	class Meta:
 		model = Course
-		fields = ['id', 'name', 'description', 'professor', 'course_instances']
+		fields = ['id', 'name', 'description', 'professor', 'students_count', 'course_instances']
+
+	def get_students_count(self, obj):
+		return obj.students_count()
 
 
 class ProfessorSerializer(StudentSerializer):

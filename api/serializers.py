@@ -87,10 +87,11 @@ class CourseSerializer(serializers.ModelSerializer):
 class ProfessorSerializer(StudentSerializer):
 	"""PersonSerializer: inherits the `.update()` method and the `person` variable from StudentSerializer"""
 	courses_taught = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+	courses_taught_count = serializers.SerializerMethodField()
 
 	class Meta:
 		model = Professor
-		fields = ['id', 'person', 'salary', 'entry_year', 'courses_taught']
+		fields = ['id', 'person', 'salary', 'entry_year', 'courses_taught_count', 'courses_taught']
 
 	def create(self, validated_data):	
 		person_data = validated_data.pop('person')
@@ -101,3 +102,6 @@ class ProfessorSerializer(StudentSerializer):
 
 		professor = Professor.objects.create(person=person_inst, **validated_data)
 		return professor
+
+	def get_courses_taught_count(self, obj):
+		return obj.courses_taught_count()

@@ -32,7 +32,7 @@ class Professor(models.Model):
 			MinValueValidator(1980),
 			MaxValueValidator(current_year())])
 
-	def courses_count(self):
+	def courses_taught_count(self):
 		return self.courses_taught.all().count()
 
 	def __str__(self):
@@ -43,7 +43,7 @@ class Student(models.Model):
 	"""Model representing a Student"""
 	person = models.OneToOneField(Person, on_delete=models.CASCADE)
 
-	def courses_count(self):
+	def courses_enrolled_count(self):
 		return self.courses_enrolled.all().count() # Reverse relation from Student to Enroll
 
 	def __str__(self):

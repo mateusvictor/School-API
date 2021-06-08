@@ -42,10 +42,11 @@ class EnrollSerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
 	person = PersonSerializer()
 	courses_enrolled = EnrollSerializer(many=True, read_only=True)
+	courses_enrolled_count = serializers.SerializerMethodField()
 
 	class Meta:
 		model = Student
-		fields = ['id', 'person', 'courses_enrolled']
+		fields = ['id', 'person', 'courses_enrolled_count', 'courses_enrolled']
 
 	def create(self, validated_data):
 		person_data = validated_data.pop('person')
@@ -71,6 +72,8 @@ class StudentSerializer(serializers.ModelSerializer):
 
 		return instance
 
+	def get_courses_enrolled_count(self, obj):
+		return obj.courses_enrolled_count()
 
 class CourseSerializer(serializers.ModelSerializer):	
 	course_instances = EnrollSerializer(many=True, read_only=True)

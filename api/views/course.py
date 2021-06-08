@@ -3,6 +3,7 @@ from rest_framework import status
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.utils.datastructures import MultiValueDictKeyError
 from api.serializers import *
 from api.models import *
 
@@ -90,13 +91,19 @@ class EnrollView(APIView):
 
 class UnenrollView(APIView):
 	def post(self, request):
-		student_id, course_id = int(request.POST['student']), int(request.POST['course'])
 		try:
+			student_id, course_id = int(request.POST['student']), int(request.POST['course'])
 			enroll_object = Enroll.objects.get(student__id=student_id, course__id=course_id)
-			enroll_object.delete()
+
+		except MultiValueDictKeyError:
+			return Response({'detail': 'Student/Professor id was not provided'}, 
+				status=status.HTTP_400_BAD_REQUEST)
+
 		except Enroll.DoesNotExist:
 			raise Http404
-		else:
-			student = Student.objects.get(pk=student_id)
-			course = Course.objects.get(pk=course_id)
-			return Response({'detail': f'Student {student} successfully unenrolled {course}'})
+		
+		enroll_object.delete()
+		student = Student.objects.get(pk=student_id)
+		course = Course.objects.get(pk=course_id)
+
+		return Response({'detail': f'Student {student} successfully unenrolled {course} course'})

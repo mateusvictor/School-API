@@ -171,7 +171,7 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
     } 
 
 
-`POST /api/professors/`
+`POST /api/students/`
     
     http POST localhost:8000/api/students/ < post.json
 
@@ -203,3 +203,105 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
         "courses_enrolled_count": 0,
         "courses_enrolled": []
     }
+
+## Get list of courses
+
+### Request
+`GET /api/courses/`
+    
+    http localhost:8000/api/courses/
+
+### Response
+    
+    HTTP/1.1 200 OK
+    Allow: GET, POST, HEAD, OPTIONS
+    Content-Length: 433
+    Content-Type: application/json
+    Date: Sat, 12 Jun 2021 21:35:28 GMT
+
+    [
+        {
+            "id": 1,
+            "name": "Algorithms",
+            "description": "A nice overview of Algorithms",
+            "professor": 1,
+            "students_count": 3,
+            "course_instances": [
+                {
+                    "course": 1,
+                    "student": 2,
+                    "enrolled_at": "05-06-2021 13:01:30"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Biology",
+            "description": "High School Biology",
+            "professor": null,
+            "students_count": 0,
+            "course_instances": []
+        }
+    ]
+
+## Create a new course
+
+### Request
+`post.json content`
+
+    {
+        "id": 2,
+        "name": "Biology",
+        "description": "High School Biology",
+        "professor": 1
+    }
+
+
+`POST /api/courses/`
+    
+    http POST localhost:8000/api/courses/ < post.json
+
+### Response
+
+    HTTP/1.1 201 Created
+    Allow: GET, POST, HEAD, OPTIONS
+    Content-Length: 116
+    Content-Type: application/json
+    Date: Sat, 12 Jun 2021 21:49:06 GMT
+
+    {
+        "id": 4,
+        "name": "Biology",
+        "description": "High School Biology",
+        "professor": 1,
+        "students_count": 0,
+        "course_instances": []
+    }
+
+
+## Enroll a student in an existing course
+
+### Request
+`post.json content`
+
+    {
+        "course": 1,
+        "student": 5
+    }
+
+`POST /api/courses/enroll/`
+
+    http localhost:8000/api/courses/enroll/ < post.json
+
+### Response
+    
+    HTTP/1.1 201 Created
+    Allow: GET, POST, HEAD, OPTIONS
+    Content-Length: 77
+    Content-Type: application/json
+    Date: Sat, 12 Jun 2021 22:00:19 GMT
+
+    {
+        "data": "Student Jorge Vieira Silva Amoedo successfully enrolled Algorithms"
+    }
+

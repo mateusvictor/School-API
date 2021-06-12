@@ -117,6 +117,19 @@ class EnrollTests(APITestCase):
 		}
 
 		response = self.client.post(url, data, format='json')
-		response_dict = dict(response.data)
-
 		self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+	def test_unenroll_student_in_course(self):
+		"""
+		Ensure we can unenroll a student in a course 
+		"""
+		EnrollTests.test_enroll_student_in_course(self)
+		url = reverse('unenroll')
+
+		data = {
+			'course': 1,
+			'student': 1
+		}
+
+		response = self.client.post(url, data, format='json')
+		self.assertEqual(response.status_code, status.HTTP_200_OK)

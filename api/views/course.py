@@ -92,11 +92,11 @@ class EnrollView(APIView):
 class UnenrollView(APIView):
 	def post(self, request):
 		try:
-			student_id, course_id = int(request.POST['student']), int(request.POST['course'])
+			student_id, course_id = int(request.data['student']), int(request.data['course'])
 			enroll_object = Enroll.objects.get(student__id=student_id, course__id=course_id)
 
 		except MultiValueDictKeyError:
-			return Response({'detail': 'Student/Professor id was not provided'}, 
+			return Response({'detail': 'Student/Course id was not provided'}, 
 				status=status.HTTP_400_BAD_REQUEST)
 
 		except Enroll.DoesNotExist:
@@ -106,4 +106,4 @@ class UnenrollView(APIView):
 		student = Student.objects.get(pk=student_id)
 		course = Course.objects.get(pk=course_id)
 
-		return Response({'detail': f'Student {student} successfully unenrolled {course} course'})
+		return Response({'detail': f'Student {student} successfully unenrolled {course} course'}, status=status.HTTP_200_OK)

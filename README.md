@@ -46,7 +46,7 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
         ...
     ]
 
-## Create a new student
+## Create a new professor
 
 ### Request
 `post.json content`
@@ -148,3 +148,58 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
         },
         ...
     ]
+
+## Create a new student
+
+### Request
+`post.json content`
+
+    {
+        "person": {
+            "first_name": "Jorge Vieira",
+            "last_name": "Silva Amoedo",
+            "date_of_birth": "2000-07-05",
+            "email": "joao@gmail.com",
+            "address": {
+                "country": "Brazil",
+                "state": "Sao Paulo",
+                "city": "Sao Paulo",
+                "street": "Rua do Paulo, 21",
+                "postal_code": "03123-901"
+            }
+        }
+    } 
+
+
+`POST /api/professors/`
+    
+    http POST localhost:8000/api/students/ < post.json
+
+### Response
+
+    HTTP/1.1 201 Created
+    Allow: GET, POST, HEAD, OPTIONS
+    Content-Length: 331
+    Content-Type: application/json
+    Date: Sat, 12 Jun 2021 21:29:58 GMT
+
+    {
+        "id": 6,
+        "person": {
+            "first_name": "Jorge Vieira",
+            "last_name": "Silva Amoedo",
+            "date_of_birth": "2000-07-05",
+            "email": "joao@gmail.com",
+            "address": {
+                "person": 12,
+                "country": "Brazil",
+                "state": "Sao Paulo",
+                "city": "Sao Paulo",
+                "street": "Rua do Paulo, 21",
+                "postal_code": "03123-901",
+                "complement": null
+            }
+        },
+        "courses_enrolled_count": 0,
+        "courses_enrolled": []
+    }

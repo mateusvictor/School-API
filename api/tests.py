@@ -10,7 +10,7 @@ from api.models import *
 class ProfessorTests(APITestCase):
 	def test_create_professor(self):
 		"""
-		Ensure we can create a new student object
+		Ensure we can create a new professor object
 		"""
 		url = reverse('professor-list')
 		data = { 
@@ -44,9 +44,6 @@ class ProfessorTests(APITestCase):
 		self.assertEqual(Decimal(str(data['salary'])), professor_object.salary)
 
 
-
-
-
 class StudentTests(APITestCase):
 	def test_create_student(self):
 		"""
@@ -76,5 +73,31 @@ class StudentTests(APITestCase):
 		address_object = person_object.address
 
 		self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-		self.assertEqual(response_dict['person']['first_name'], person_object.first_name)
-		self.assertEqual(response_dict['person']['address']['street'], address_object.street)
+		self.assertEqual(data['person']['first_name'], person_object.first_name)
+		self.assertEqual(data['person']['address']['street'], address_object.street)
+
+
+class CourseTests(APITestCase):
+	def test_create_course(self):
+		"""
+		Ensure we can create a new course object
+		"""
+		ProfessorTests.test_create_professor(self) # Creating a professor object to be used as foreign key
+		url = reverse('course-list')
+		data = {
+			'name': 'Data Structures Part II',
+			'description': 'Graphs, Trees, Binary Search Trees and more.',
+			'professor': 1 
+		}
+
+		response = self.client.post(url, data, format='json')
+		response_dict = dict(response.data)
+		course_object = Course.objects.get(pk=int(response_dict['id']))
+		professor_object = Professor.objects.get(pk=response_dict['professor'])
+
+		self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+		self.assertEqual(data['name'], course_object.name)
+		self.assertEqual(data['description'], course_object.description)
+		self.assertEqual(data['professor'], professor_object.id)
+		self.assertEqual(response_dict['course_instances'], [])
+		self.assertEqual(response_dict['students_count'], 0)

@@ -87,7 +87,7 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
 	        "first_name": "Jorge Vieira",
 	        "last_name": "Silva Amoedo",
 	        "date_of_birth": "2000-07-05",
-	       	"email": "jorginn@gmail.com",
+	       	"email": "jorgin@gmail.com",
 	        "address": {
 	            "person": 10,
 	            "country": "Brazil",

@@ -82,7 +82,7 @@ class CourseTests(APITestCase):
 		"""
 		Ensure we can create a new course object
 		"""
-		ProfessorTests.test_create_professor(self) # Creating a professor object to be used as foreign key
+		ProfessorTests.test_create_professor(self) # Creating a professor object
 		url = reverse('course-list')
 		data = {
 			'name': 'Data Structures Part II',
@@ -101,3 +101,22 @@ class CourseTests(APITestCase):
 		self.assertEqual(data['professor'], professor_object.id)
 		self.assertEqual(response_dict['course_instances'], [])
 		self.assertEqual(response_dict['students_count'], 0)
+
+
+class EnrollTests(APITestCase):
+	def test_enroll_student_in_course(self):
+		"""
+		Ensure we can enroll a student in a course
+		"""
+		StudentTests.test_create_student(self)
+		CourseTests.test_create_course(self)
+		url = reverse('enroll')
+		data ={
+			'course': 1,
+			'student': 1
+		}
+
+		response = self.client.post(url, data, format='json')
+		response_dict = dict(response.data)
+
+		self.assertEqual(response.status_code, status.HTTP_201_CREATED)

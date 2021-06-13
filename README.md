@@ -50,14 +50,14 @@ CREATE DATABASE school_api;
 ```python
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'school_api',
-            'USER': 'YOUR_USERNAME',
-            'PASSWORD': 'YOUR_PASSWORD',
-            'HOST': 'localhost',
-            'PORT': '5432',
-        },
-        ...
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'school_api',
+        'USER': 'YOUR_USERNAME',
+        'PASSWORD': 'YOUR_PASSWORD',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    },
+    ...
 }
 ```
 

@@ -19,7 +19,7 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
 - Create a Virtualenv and the project directory
 
 ```bash
-    virtualenv env
+virtualenv env
 ```
 
 - Activate the virtualenv
@@ -251,6 +251,7 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
 `POST /api/students/`
     
     http POST localhost:8000/api/students/ < post.json
+
 
 ### Response
 

@@ -1,6 +1,45 @@
 # School-API
 A REST API made using Django Rest Framework and PostgreSQL where students can enroll/unenroll courses, check the courses enrolled and more. (Check routes)
 
+
+# How to install it?
+
+- First Clone this repo
+
+```bash
+    git https://github.com/mateusvictor/School-API.git
+```
+
+- Change into the project directory
+
+```bash
+    cd path_to_project/school_api/
+```
+
+- Create a Virtualenv and the project directory
+
+```bash
+    virtualenv env
+```
+
+- Activate the virtualenv
+
+```bash
+    source env/bin/activate
+```
+
+- Install the project dependencies
+
+```bash
+    pip install -r requirements.txt
+```
+
+- Make The Migrations To the database
+
+```bash
+    python manage.py migrate
+```
+
 # REST API
 
 ## Get the list of professors

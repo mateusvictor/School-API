@@ -1,5 +1,5 @@
 # School-API
-A REST API made using Django Rest Framework and PostgreSQL where students can enroll/unenroll courses, check the courses enrolled and more. (Check routes)
+A REST API made using Django Rest Framework and PostgreSQL where students can enroll/unenroll courses, check the courses enrolled and more. (Check the REST API section)
 
 
 # How to use it?

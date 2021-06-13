@@ -22,13 +22,13 @@ cd path_to_project/school_api/
 - Create a Virtualenv and the project directory
 
 ```bash
-virtualenv env
+python -m venv venv
 ```
 
 - Activate the virtualenv
 
 ```bash
-source env/bin/activate
+venv\Scripts\activate.bat
 ```
 
 - Install the project dependencies

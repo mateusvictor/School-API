@@ -125,6 +125,7 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
 ### Request
 `post.json content`
 
+```json
     {
         "person": {
             "first_name": "Jorge Vieira",
@@ -141,7 +142,7 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
         },
         "salary": 1312.01
     } 
-
+```
 
 `POST /api/professors/`
     
@@ -228,6 +229,7 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
 ### Request
 `post.json content`
 
+```json
     {
         "person": {
             "first_name": "Jorge Vieira",
@@ -243,6 +245,7 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
             }
         }
     } 
+```
 
 
 `POST /api/students/`
@@ -323,13 +326,14 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
 ### Request
 `post.json content`
 
+```json
     {
         "id": 2,
         "name": "Biology",
         "description": "High School Biology",
         "professor": 1
     }
-
+```
 
 `POST /api/courses/`
     
@@ -358,10 +362,12 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
 ### Request
 `post.json content`
 
+```json
     {
         "course": 1,
         "student": 5
     }
+```
 
 `POST /api/courses/enroll/`
 

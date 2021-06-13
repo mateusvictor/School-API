@@ -19,7 +19,7 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
 - Create a Virtualenv and the project directory
 
 ```bash
-virtualenv env
+    virtualenv env
 ```
 
 - Activate the virtualenv
@@ -126,22 +126,22 @@ virtualenv env
 `post.json content`
 
 ```json
-    {
-        "person": {
-            "first_name": "Jorge Vieira",
-            "last_name": "Silva Amoedo",
-            "date_of_birth": "2000-07-05",
-            "email": "jorgin@gmail.com",
-            "address": {
-                "country": "Brazil",
-                "state": "Sao Paulo",
-                "city": "Sao Paulo",
-                "street": "Rua do Paulo, 21",
-                "postal_code": "03123-901"
-            }
-        },
-        "salary": 1312.01
-    } 
+{
+    "person": {
+        "first_name": "Jorge Vieira",
+        "last_name": "Silva Amoedo",
+        "date_of_birth": "2000-07-05",
+        "email": "jorgin@gmail.com",
+        "address": {
+            "country": "Brazil",
+            "state": "Sao Paulo",
+            "city": "Sao Paulo",
+            "street": "Rua do Paulo, 21",
+            "postal_code": "03123-901"
+        }
+    },
+    "salary": 1312.01
+} 
 ```
 
 `POST /api/professors/`
@@ -230,21 +230,21 @@ virtualenv env
 `post.json content`
 
 ```json
-    {
-        "person": {
-            "first_name": "Jorge Vieira",
-            "last_name": "Silva Amoedo",
-            "date_of_birth": "2000-07-05",
-            "email": "joao@gmail.com",
-            "address": {
-                "country": "Brazil",
-                "state": "Sao Paulo",
-                "city": "Sao Paulo",
-                "street": "Rua do Paulo, 21",
-                "postal_code": "03123-901"
-            }
+{
+    "person": {
+        "first_name": "Jorge Vieira",
+        "last_name": "Silva Amoedo",
+        "date_of_birth": "2000-07-05",
+        "email": "joao@gmail.com",
+        "address": {
+            "country": "Brazil",
+            "state": "Sao Paulo",
+            "city": "Sao Paulo",
+            "street": "Rua do Paulo, 21",
+            "postal_code": "03123-901"
         }
-    } 
+    }
+} 
 ```
 
 
@@ -328,12 +328,11 @@ virtualenv env
 `post.json content`
 
 ```json
-    {
-        "id": 2,
-        "name": "Biology",
-        "description": "High School Biology",
-        "professor": 1
-    }
+{
+    "name": "Biology",
+    "description": "High School Biology",
+    "professor": 1
+}
 ```
 
 `POST /api/courses/`
@@ -364,10 +363,10 @@ virtualenv env
 `post.json content`
 
 ```json
-    {
-        "course": 1,
-        "student": 5
-    }
+{
+    "course": 1,
+    "student": 5
+}
 ```
 
 `POST /api/courses/enroll/`

@@ -94,13 +94,13 @@ class UnenrollView(APIView):
 		try:
 			student_id, course_id = int(request.data['student']), int(request.data['course'])
 			enroll_object = Enroll.objects.get(student__id=student_id, course__id=course_id)
-
-		except MultiValueDictKeyError:
-			return Response({'detail': 'Student/Course id was not provided'}, 
-				status=status.HTTP_400_BAD_REQUEST)
-
+		
 		except Enroll.DoesNotExist:
 			raise Http404
+
+		except:
+			return Response({'detail': 'Student/Course id was not provided'}, 
+				status=status.HTTP_400_BAD_REQUEST)
 		
 		enroll_object.delete()
 		student = Student.objects.get(pk=student_id)

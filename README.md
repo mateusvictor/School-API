@@ -3,7 +3,7 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
 
 The project also contains a documentation made with swagger: (check <a href="http://localhost:8000">localhost:8000</a> after installing for the more details)
 
-<img src="https://github.com/mateusvictor/School-APII/blob/main/swagger-ui.png">
+<img src="https://github.com/mateusvictor/School-API/blob/main/swagger-ui.png">
 
 # How to use it?
 

@@ -7,31 +7,31 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
 - First Clone this repo
 
 ```bash
-    git clone https://github.com/mateusvictor/School-API.git
+git clone https://github.com/mateusvictor/School-API.git
 ```
 
 - Change into the project directory
 
 ```bash
-    cd path_to_project/school_api/
+cd path_to_project/school_api/
 ```
 
 - Create a Virtualenv and the project directory
 
 ```bash
-    virtualenv env
+virtualenv env
 ```
 
 - Activate the virtualenv
 
 ```bash
-    source env/bin/activate
+source env/bin/activate
 ```
 
 - Install the project dependencies
 
 ```bash
-    pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 # Database configurations
@@ -39,40 +39,40 @@ A REST API made using Django Rest Framework and PostgreSQL where students can en
 - First open your ```psql terminal``` and type:
 
 ```sql
-    CREATE DATABASE school_api;
+CREATE DATABASE school_api;
 ```
 
 - Make sure you change the ```DATABASES``` dictionary on <a href="https://github.com/mateusvictor/School-API/blob/main/school_api/settings.py">settings.py</a> to this:
 
 ```python
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'school_api',
+DATABASES = {
+    'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'school_api',
             'USER': 'YOUR_USERNAME',
             'PASSWORD': 'YOUR_PASSWORD',
             'HOST': 'localhost',
             'PORT': '5432',
         },
         ...
-    }
+}
 ```
 
 * PS .: Note that there is a sqlite database right below the ```default``` database, so if you want to just use the stantard Django sqlite you can change the ```DATABASES``` dictionary like this:
 
 ```python
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
 ```
 
 - Finally, make the migrations on the database choosed:
 
 ```bash
-    python manage.py migrate
+python manage.py migrate
 ```
 
 # REST API

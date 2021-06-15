@@ -306,12 +306,12 @@ python manage.py migrate
             "name": "Algorithms",
             "description": "A nice overview of Algorithms",
             "professor": 1,
-            "students_count": 3,
+            "students_count": 1,
             "course_instances": [
                 {
                     "course": 1,
                     "student": 2,
-                    "enrolled_at": "05-06-2021 13:01:30"
+                    "enrolled_at": "05-06-2021 14:11:30"
                 }
             ]
         },
